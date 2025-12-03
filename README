@@ -1,0 +1,26 @@
+# Flash Sale Task
+
+## Overview
+This repository contains a minimal Flash Sale system built with **Laravel & SQL Server**, including migrations, models, and tests to demonstrate key functionality:
+
+## Migrations & Seeders
+All migrations are in `database/migrations`:
+
+- `create_users_table`
+- `create_products_table`
+- `create_holds_table`
+- `create_orders_table`
+- `create_personal_access_tokens_table`
+
+Seeders are optional. Minimal test data can be inserted using **Tinker**:
+
+```bash
+php artisan tinker
+
+
+EXAMPLE:
+
+$user = \App\Models\User::create(['name'=>'Test User','email'=>'test@example.com','password'=>bcrypt('password')]);
+$product = \App\Models\Product::create(['name'=>'Test Product','price'=>100,'total_stock'=>10,'available_stock'=>10]);
+$hold = \App\Models\Hold::create(['product_id'=>$product->id,'qty'=>5,'expires_at'=>now()->addDay()]);
+$order = \App\Models\Order::create(['product_id'=>$product->id,'hold_id'=>$hold->id,'user_id'=>$user->id,'qty'=>2,'total'=>200,'status'=>'pending']);
